@@ -1,0 +1,291 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 350px 0px 350px;
+    margin-top: 20px;
+}
+
+#logo {
+    height: 30px;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    position: static;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 20;
+    color: #aeaeae;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #31c1ae;
+}
+
+#About {
+    color: #31c1ae;
+    font-weight: bold;
+}
+
+main {
+    padding: 0px 250px 0px 250px;
+}
+
+#slogan {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 600px;
+}
+
+#slogan img {
+    width: 50px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+#slogan p {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00b39b;
+}
+
+#text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 80px;
+    gap: 20px;
+}
+
+#text p {
+    color: #888888;
+    line-height: 2;
+}
+
+#text a {
+    color: #00b39b;
+    text-decoration: none;
+}
+
+#cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    max-width: 1000px;
+}
+
+.card {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    width: 280px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    opacity: 0.9;
+}
+
+.card img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.card.patients {
+    background-color: #00ccb1;
+}
+
+.card.doctors {
+    background-color: #3d83df;
+}
+
+.card.clinics {
+    background-color: #1b2734;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.5;
+} 
+
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+}
+
+.card a:hover {
+    opacity: 0.8;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #d7f6f5;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.cartes-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;    
+}
+
+.carte {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carte img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.carte h3 {
+    color: #00bfa5;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.carte p {
+    font-size: 14px;
+    color: #666;
+}
+
+#slogan2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+#slogan2 h2 {
+    color: #48c8b7;
+}
+
+#slogan2 p {
+    color: #777777;
+}
+
+.city-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.city-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+}
+
+.city-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.city-card:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.city-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.city-card p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.city-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.city-card button:hover {
+    background-color: #0056b3;
+}
+
+#join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#join button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    border-top: #aeaeae solid;
+}
+
+footer p {
+    font-size: 15px;
+}
+
+footer p > a {
+    color: #007bff;
+    text-decoration: none;
+}
