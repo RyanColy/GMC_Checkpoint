@@ -3,19 +3,19 @@ body {
     background-color: #f8f9fa;
 }
 .navbar {
-    background-color: #2d2a26; /* Dark background to match logo */
+    background-color: #2d2a26;
             
 }
 .navbar-brand {
-    color: #e0c2a3 !important; /* Light gold color from the logo */
+    color: #e0c2a3 !important;
     display: flex;
     align-items: center;
 }
 .navbar-brand img {
-    margin-right: 10px; /* Space between logo and text */
+    margin-right: 10px;
 }
 .nav-link {
-    color: #e0c2a3 !important; /* Light gold color from the logo */
+    color: #e0c2a3 !important;
 }
 #logo {
     height: 100px;
@@ -23,11 +23,11 @@ body {
 }
 
 .hero-section {
-    height: 87vh; /* Hauteur de la section = hauteur de l'écran */
+    height: 87vh;
     background-image: url('media/geojango-maps-CWbbJW_7Fsw-unsplash.jpg');
-    background-size: cover; /* L'image couvre toute la section */
-    background-position: center; /* Centrer l'image */
-    background-repeat: no-repeat; /* Ne pas répéter l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     text-align: center;
     display: flex;
@@ -41,7 +41,7 @@ body {
 
 .destinations-section {
     padding: 50px 0;
-    background-color: #f2efe9; /* Light background */
+    background-color: #f2efe9;
 }
 .card {
     border: none;
@@ -58,7 +58,7 @@ body {
 }
 .accordion-button:not(.collapsed) {
     color: white;
-    background-color: #2d2a26; /* Dark background to match logo */
+    background-color: #2d2a26;
 }
 .accordion-button {
     background-color: #f8f9fa;
@@ -70,16 +70,16 @@ body {
 }
 
 .footer {
-    background-color: #2d2a26; /* Dark background to match logo */
-    color: #e0c2a3; /* Light gold color from the logo */
+    background-color: #2d2a26;
+    color: #e0c2a3;
     text-align: center;
     padding: 20px 0;
 }
 .footer p {
-    color: #e0c2a3; /* Light gold color from the logo */
+    color: #e0c2a3;
 }
 .footer a {
-    color: #e0c2a3; /* Light gold color from the logo */
+    color: #e0c2a3;
     margin: 0 10px;
     font-size: 1.2em;
 }
