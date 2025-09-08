@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sentence Analyzer</h1>
+        <p class="instruction">Enter a sentence that ends with a period (.):</p>
+        
+        <div class="input-section">
+            <input type="text" id="sentenceInput" placeholder="Type your sentence here..." />
+            <button onclick="analyzeSentence()">Analyze</button>
+        </div>
+        
+        <div class="results" id="results">
+            <h2>Analysis Results:</h2>
+            <div class="result-item">
+                <span class="label">Length of sentence:</span>
+                <span class="value" id="lengthResult">-</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Number of words:</span>
+                <span class="value" id="wordsResult">-</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Number of vowels:</span>
+                <span class="value" id="vowelsResult">-</span>
+            </div>
+        </div>
+        
+        <div class="process" id="process">
+            <h3>Character-by-Character Process:</h3>
+            <div id="processDetails"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
