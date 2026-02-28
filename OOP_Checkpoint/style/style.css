@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   Icon Styles
+   Font Awesome icons used for +, -, trash, and heart buttons.
+============================================================ */
+i {
+  font-size: 35px;
+  cursor: pointer;
+  margin: 0 10px;
+  color: black;
+  transition: transform 0.15s ease; /* Smooth scale on hover */
+}
+
+i:hover {
+  transform: scale(1.15); /* Slightly enlarge icons on hover for better UX */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopping-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 3%;
+  margin: 50px 0;
+}
+
+/* ============================================================
+   Total Price Display
+   Large text showing "Total price : X $" at the top of the cart.
+============================================================ */
+.total-price span {
+  font-size: 30px;
+}
+
+.total {
+  font-weight: bold;
+  display: inline-block; /* Required for transform animations to work */
+  transition: color 0.3s ease;
+}
+
+/* ============================================================
+   Price Update Animation
+   Triggered via JavaScript when the total price changes.
+   Briefly highlights the price in green and scales it up.
+============================================================ */
+@keyframes priceFlash {
+  0%   { transform: scale(1);    color: inherit; }
+  40%  { transform: scale(1.2);  color: #28a745; } /* Green flash */
+  100% { transform: scale(1);    color: inherit; }
+}
+
+.price-updated {
+  animation: priceFlash 0.4s ease forwards;
+}
+
+/* ============================================================
+   Product List
+   Horizontal row of product cards inside the cart container.
+============================================================ */
+.list-products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap; /* Keep all cards on a single row */
+  margin-top: 30px;
+  width: 100%; /* Full width so 3 cards fit side by side */
+  gap: 20px;
+}
+
+.card {
+  padding: 5%;
+  animation: fadeInCard 0.4s ease both; /* Entrance animation */
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Card Remove Animation
+   Triggered via JavaScript when the user confirms deletion.
+   The card slides up and fades out before being removed from the DOM.
+============================================================ */
+@keyframes removeCard {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.85) translateY(-20px); }
+}
+
+.card-removing {
+  animation: removeCard 0.35s ease forwards;
+  pointer-events: none; /* Prevent any clicks while the animation plays */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+/* ============================================================
+   Quantity Display
+   The number shown between the + and - buttons.
+============================================================ */
+.quantity {
+  font-size: 25px;
+  display: inline-block; /* Required for transform animations */
+  min-width: 30px;
+  text-align: center;
+}
+
+/* ============================================================
+   Quantity Bump Animation
+   A brief pop effect triggered when + or - is clicked.
+============================================================ */
+@keyframes quantityPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.quantity-bump {
+  animation: quantityPop 0.25s ease forwards;
+}
+
+/* ============================================================
+   Trash Icon Color
+   Red-ish color to signal a destructive action.
+============================================================ */
+.fa-trash-alt {
+  color: #de6b5c;
+}
+
+.fa-trash-alt:hover {
+  color: #c0392b; /* Darker red on hover */
+}
+
+/* ============================================================
+   Heart Pop Animation
+   Triggered when the heart button is clicked (like / unlike).
+============================================================ */
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+.heart-pop {
+  animation: heartPop 0.3s ease forwards;
+}
+
+/* ============================================================
+   Empty Cart Message
+   Shown when all product cards have been deleted.
+   Styled to be friendly and visually noticeable.
+============================================================ */
+.empty-cart-message {
+  font-size: 20px;
+  color: #888;
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeInCard 0.5s ease both; /* Same entrance animation as cards */
+}
+
+/* ============================================================
+   Confirmation Dialog — Overlay Backdrop
+   A dark semi-transparent layer that covers the whole page.
+   Fades in when the dialog opens, fades out on close.
+============================================================ */
+.confirm-overlay {
+  position: fixed;
+  inset: 0; /* Shorthand for top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* The "visible" class is added by JS to trigger the fade-in */
+.confirm-overlay.visible {
+  opacity: 1;
+}
+
+/* ============================================================
+   Confirmation Dialog — Box
+   Centered white card containing the message and action buttons.
+   Scales in when the overlay becomes visible.
+============================================================ */
+.confirm-dialog {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 40px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  max-width: 380px;
+  width: 90%;
+  transform: scale(0.85);
+  transition: transform 0.3s ease;
+}
+
+/* Scale the dialog to full size when the overlay is visible */
+.confirm-overlay.visible .confirm-dialog {
+  transform: scale(1);
+}
+
+.confirm-dialog p {
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* ============================================================
+   Confirmation Dialog — Buttons Row
+============================================================ */
+.confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* "Yes, remove it" button — red destructive style */
+.btn-confirm-yes {
+  background-color: #de6b5c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-confirm-yes:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* "Cancel" button — neutral grey style */
+.btn-confirm-no {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-confirm-no:hover {
+  background-color: #bdbdbd;
+  transform: scale(1.05);
+}
