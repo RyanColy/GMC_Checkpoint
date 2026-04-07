@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:www.thesportsdb.com)",
+      "Bash(curl -s \"https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Yoann+Gourcuff\")",
+      "Bash(curl -s \"https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Michel+Bastos\")",
+      "Bash(curl -s \"https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Lamine+Gassama\")",
+      "Bash(curl -s \"https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Yann+Mvila\")",
+      "Bash(curl -s \"https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Jose+Angel+Crespo\")"
+    ]
+  }
+}
