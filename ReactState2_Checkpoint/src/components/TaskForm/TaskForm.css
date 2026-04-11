@@ -1,0 +1,83 @@
+/* TaskForm lives inside a Modal — no card background needed */
+
+.task-form {
+  width: 100%;
+}
+
+/* ── Fields layout ───────────────────────────────── */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.2px;
+}
+
+/* ── Inputs & textarea ───────────────────────────── */
+.form-group input,
+.form-group textarea {
+  padding: 10px 13px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-surface-muted);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+  resize: none;
+  line-height: 1.5;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #c8d3e0;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+  border-color: #b8c5d6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3.5px rgba(99, 102, 241, 0.13);
+  background: #fdfdff;
+}
+
+/* ── Validation error ────────────────────────────── */
+.form-group .error {
+  font-size: 0.76rem;
+  color: var(--color-destructive);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  animation: shakeIn 0.25s ease both;
+}
+
+@keyframes shakeIn {
+  0%   { transform: translateX(-4px); opacity: 0; }
+  50%  { transform: translateX(3px); }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* ── Actions ─────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
