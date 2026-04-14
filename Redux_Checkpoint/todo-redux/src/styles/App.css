@@ -1,0 +1,403 @@
+/* ── Layout ─────────────────────────────────────── */
+.app {
+  max-width: 580px;
+  margin: 48px auto;
+  padding: 0 16px 48px;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.app-header .subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ── Stats bar ───────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.stat-chip.total {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.stat-chip.done {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.stat-chip.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.stat-chip .stat-num {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: box-shadow var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── AddTask ─────────────────────────────────────── */
+.add-task-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  font-size: 1rem;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.add-task-form input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: white;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.add-task-form input::placeholder {
+  color: var(--muted);
+}
+
+.add-task-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, #a78bfa 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(108,99,255,0.30);
+}
+
+.btn-add:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(108,99,255,0.40);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+/* ── Filters (segmented control) ─────────────────── */
+.filter-segment {
+  display: flex;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.filter-segment button {
+  flex: 1;
+  padding: 7px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+
+.filter-segment button.active {
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-segment button:hover:not(.active) {
+  color: var(--text);
+}
+
+/* ── Section label ───────────────────────────────── */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ── Task list ───────────────────────────────────── */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Task item ───────────────────────────────────── */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.task-item:hover {
+  border-color: #d1d5db;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.task-item.done {
+  background: #fafafa;
+  border-color: #f0fdf4;
+}
+
+/* custom checkbox */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition);
+  background: white;
+}
+
+.task-checkbox:hover {
+  border-color: var(--primary);
+}
+
+.task-checkbox:checked {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.task-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.task-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+}
+
+.task-description {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color var(--transition);
+  word-break: break-word;
+}
+
+.task-item.done .task-description {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.done-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--success-light);
+  color: var(--success);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* edit input inside task */
+.task-item input[type='text'] {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.10);
+}
+
+/* ── Icon action buttons ─────────────────────────── */
+.task-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background var(--transition), transform var(--transition);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+}
+
+.btn-icon.edit:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.btn-icon.save:hover {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.btn-icon.delete:hover {
+  background: var(--destructive-light);
+  color: var(--destructive);
+}
+
+/* ── Empty state ─────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+
+.empty-state .empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.empty-state span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .app {
+    margin: 24px auto;
+  }
+
+  .app-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .stats-bar {
+    gap: 8px;
+  }
+
+  .btn-add span {
+    display: none;
+  }
+
+  .btn-add {
+    padding: 11px 14px;
+  }
+}
