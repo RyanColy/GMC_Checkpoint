@@ -1,0 +1,106 @@
+/* Only custom styles that Tailwind can't handle natively */
+
+/* City card default gradient (before image loads) */
+.city-card-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+
+/* UV Gauge — conic-gradient */
+.gauge {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: conic-gradient(#f5c518 0%, #f5a623 var(--pct, 40%), #e5e7eb var(--pct, 40%) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.gauge::before {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: #f9fafb;
+  border-radius: 50%;
+}
+
+.gauge-value {
+  position: relative;
+  z-index: 1;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Week row active state */
+.week-row.row-active {
+  background-color: #1a1a2e !important;
+  color: white;
+}
+
+.week-row.row-active span,
+.week-row.row-active div {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Highlight card hover lift */
+.highlight-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.highlight-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+/* Forecast card active state */
+.forecast-card-active {
+  background-color: #1a1a2e !important;
+}
+
+.forecast-card-active .fc-day,
+.forecast-card-active .fc-temp {
+  color: #ffffff !important;
+}
+
+.forecast-card-active .fc-low {
+  color: #6b7280 !important;
+}
+
+/* Responsive — stack layout on small screens */
+@media (max-width: 860px) {
+  .app {
+    grid-template-columns: 1fr !important;
+  }
+
+  #weekly-forecast {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0 !important;
+  }
+
+  .app {
+    border-radius: 0 !important;
+    min-height: 100vh;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  #weekly-forecast {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}

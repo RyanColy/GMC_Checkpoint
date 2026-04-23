@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { night: '#1a1a2e' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6 font-sans">
+
+  <div class="app grid bg-white rounded-3xl overflow-hidden w-full max-w-5xl shadow-2xl" style="grid-template-columns: 280px 1fr; min-height: 680px;">
+
+    <!-- ─── Sidebar ───────────────────────────────────── -->
+    <aside class="bg-gray-50 border-r border-gray-100 p-7 flex flex-col gap-7">
+
+      <!-- Search + suggestions -->
+      <div class="relative">
+        <div class="flex items-center bg-white rounded-xl px-4 py-3 gap-2 shadow-sm">
+          <span class="text-gray-400 text-base">🔍</span>
+          <input
+            id="city-input"
+            type="text"
+            placeholder="Search for places..."
+            autocomplete="off"
+            class="flex-1 border-none outline-none text-sm text-gray-500 placeholder-gray-300 bg-transparent font-sans"
+          />
+        </div>
+        <!-- Autocomplete dropdown -->
+        <div
+          id="suggestions"
+          class="hidden absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
+        ></div>
+      </div>
+
+      <!-- Weather main -->
+      <div class="flex flex-col gap-2 py-2">
+        <div id="main-icon" class="text-8xl leading-none mb-2">⛅</div>
+        <div id="temperature" class="text-6xl font-bold text-night tracking-tight leading-none">--°C</div>
+        <div id="date" class="text-sm text-gray-400 mt-1">--</div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="w-2 h-2 rounded-full bg-gray-400 flex-shrink-0"></span>
+          <span id="description">--</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0"></span>
+          <span id="rain">Rain -- %</span>
+        </div>
+      </div>
+
+      <!-- City card with dynamic background image -->
+      <div id="city-card" class="mt-auto rounded-2xl overflow-hidden h-24 relative city-card-bg">
+        <div class="absolute inset-0 flex items-end p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 65%);">
+          <span id="city-name" class="text-white text-sm font-semibold tracking-wide">--</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ─── Main Content ──────────────────────────────── -->
+    <main class="p-8 flex flex-col gap-6 overflow-y-auto">
+
+      <!-- Tabs row -->
+      <div class="flex items-center justify-between">
+        <div class="flex bg-gray-100 rounded-xl p-1 gap-1">
+          <button id="tab-today" class="tab px-5 py-2 rounded-lg text-sm font-medium transition-all bg-white text-night shadow-sm">Today</button>
+          <button id="tab-week"  class="tab px-5 py-2 rounded-lg text-sm font-medium transition-all text-gray-400">Week</button>
+        </div>
+        <img src="https://i.pravatar.cc/40" alt="avatar" class="w-10 h-10 rounded-full object-cover border-2 border-gray-200" />
+      </div>
+
+      <!-- Weekly forecast strip (always visible) -->
+      <div id="weekly-forecast" class="grid gap-2" style="grid-template-columns: repeat(7, 1fr);">
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+        <div class="bg-gray-50 rounded-2xl h-28 animate-pulse"></div>
+      </div>
+
+      <!-- ── TODAY VIEW ── -->
+      <div id="today-view">
+        <h2 class="text-base font-semibold text-night mb-4">Today's Highlights</h2>
+        <div class="grid grid-cols-3 gap-4">
+
+          <!-- UV Index -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">UV Index</span>
+            <div class="flex justify-center items-center py-1">
+              <div class="gauge" id="uv-gauge" style="--pct: 40%">
+                <span class="gauge-value" id="uv-value">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wind Status -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Wind Status</span>
+            <div class="text-4xl font-bold text-night leading-none">
+              <span id="wind-speed">--</span>
+              <span class="text-base font-normal text-gray-400"> km/h</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              <span id="wind-dir">--</span>
+            </div>
+          </div>
+
+          <!-- Sunrise & Sunset -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Sunrise &amp; Sunset</span>
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🌅</span>
+              <div>
+                <div id="sunrise" class="text-lg font-semibold text-night">--</div>
+                <div class="text-xs text-gray-400">Sunrise</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🌇</span>
+              <div>
+                <div id="sunset" class="text-lg font-semibold text-night">--</div>
+                <div class="text-xs text-gray-400">Sunset</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humidity -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Humidity</span>
+            <div class="text-4xl font-bold text-night leading-none">
+              <span id="humidity">--</span>
+              <span class="text-base font-normal text-gray-400"> %</span>
+            </div>
+            <div class="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+              <div id="humidity-bar" class="h-full rounded-full transition-all duration-700" style="width: 0%; background: linear-gradient(90deg, #4a90e2, #7b61ff);"></div>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <span>&#9651;</span>
+              <span id="humidity-status">--</span>
+            </div>
+          </div>
+
+          <!-- Visibility -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Visibility</span>
+            <div class="text-4xl font-bold text-night leading-none">
+              <span id="visibility">--</span>
+              <span class="text-base font-normal text-gray-400"> km</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <span>👁</span>
+              <span id="visibility-status">--</span>
+            </div>
+          </div>
+
+          <!-- Air Quality -->
+          <div class="highlight-card bg-gray-50 rounded-2xl p-5 flex flex-col gap-3">
+            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Air Quality</span>
+            <div class="text-4xl font-bold text-night leading-none" id="aqi">--</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <span class="w-2 h-2 rounded-full bg-red-400"></span>
+              <span id="aqi-status">--</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── WEEK VIEW (hidden by default) ── -->
+      <div id="week-view" class="hidden flex flex-col gap-3">
+        <h2 class="text-base font-semibold text-night">7-Day Forecast</h2>
+        <div id="week-list" class="flex flex-col gap-2"></div>
+
+        <!-- Day detail panel -->
+        <div id="day-detail" class="hidden rounded-2xl p-6 mt-1" style="background: #1a1a2e;">
+          <div class="flex items-center gap-4 mb-5">
+            <span id="detail-icon" class="text-5xl">⛅</span>
+            <div>
+              <div id="detail-day"  class="text-white text-lg font-semibold">--</div>
+              <div id="detail-desc" class="text-gray-400 text-sm">--</div>
+            </div>
+            <div class="ml-auto text-right">
+              <div id="detail-max" class="text-white text-3xl font-bold">--°</div>
+              <div id="detail-min" class="text-gray-400 text-sm">--°</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-3 text-sm text-center">
+            <div class="rounded-xl p-3" style="background: rgba(255,255,255,0.08);">
+              <div class="text-gray-400 text-xs mb-1">Rain</div>
+              <div id="detail-rain" class="text-white font-semibold">--</div>
+            </div>
+            <div class="rounded-xl p-3" style="background: rgba(255,255,255,0.08);">
+              <div class="text-gray-400 text-xs mb-1">Wind</div>
+              <div id="detail-wind" class="text-white font-semibold">--</div>
+            </div>
+            <div class="rounded-xl p-3" style="background: rgba(255,255,255,0.08);">
+              <div class="text-gray-400 text-xs mb-1">Sunrise</div>
+              <div id="detail-sunrise" class="text-white font-semibold">--</div>
+            </div>
+            <div class="rounded-xl p-3" style="background: rgba(255,255,255,0.08);">
+              <div class="text-gray-400 text-xs mb-1">Sunset</div>
+              <div id="detail-sunset" class="text-white font-semibold">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
