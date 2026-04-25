@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services — NexaStudio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="font-sans bg-white text-gray-900 antialiased">
+
+<%- include('partials/navbar') %>
+
+<!-- ── PAGE HERO ─────────────────────────────────────── -->
+<section class="relative pt-32 pb-20 overflow-hidden">
+  <div class="blob" style="width:500px;height:500px;top:-100px;right:-150px;background:#a78bfa;opacity:0.15;"></div>
+  <div class="blob" style="width:300px;height:300px;top:50px;left:-80px;background:#60a5fa;opacity:0.1;"></div>
+
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <div class="inline-flex items-center gap-2 bg-violet-50 border border-violet-100 text-violet-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+      <span class="w-1.5 h-1.5 bg-violet-500 rounded-full"></span>
+      What we offer
+    </div>
+    <h1 class="text-5xl md:text-6xl font-black leading-tight tracking-tight text-gray-900 mb-4">
+      Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-500">Services</span>
+    </h1>
+    <p class="text-lg text-gray-500 leading-relaxed max-w-xl mx-auto">
+      Everything your business needs to thrive online — from stunning design to powerful development and smart growth strategies.
+    </p>
+  </div>
+</section>
+
+<!-- ── SERVICES GRID ─────────────────────────────────── -->
+<section class="pb-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="w-14 h-14 bg-violet-100 rounded-2xl flex items-center justify-center text-3xl mb-6">🎨</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Web Design</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Pixel-perfect interfaces that captivate your audience. We blend aesthetics with usability to create experiences people love.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-violet-500">✓</span> UI / UX Design</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-violet-500">✓</span> Wireframing & Prototyping</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-violet-500">✓</span> Responsive Design</li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl mb-6">💻</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Web Development</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Robust, scalable websites and web apps built with modern technologies — fast, secure, and maintainable.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-blue-500">✓</span> Frontend & Backend</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-blue-500">✓</span> API Integration</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-blue-500">✓</span> CMS & E-commerce</li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-6">📈</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">SEO & Analytics</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Get found on Google and understand your traffic. We optimize for rankings and translate data into actionable growth.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-green-500">✓</span> On-page & Technical SEO</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-green-500">✓</span> Google Analytics Setup</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-green-500">✓</span> Monthly Reports</li>
+        </ul>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-3xl mb-6">📱</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Mobile Apps</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          Cross-platform mobile applications that deliver native performance on both iOS and Android with a single codebase.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-orange-500">✓</span> iOS & Android</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-orange-500">✓</span> React Native / Flutter</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-orange-500">✓</span> App Store Publishing</li>
+        </ul>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center text-3xl mb-6">✨</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Branding & Identity</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+          A strong brand builds trust. We create cohesive visual identities that make your business instantly recognizable.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-pink-500">✓</span> Logo Design</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-pink-500">✓</span> Brand Guidelines</li>
+          <li class="flex items-center gap-2 text-sm text-gray-600"><span class="text-pink-500">✓</span> Marketing Assets</li>
+        </ul>
+      </div>
+
+      <!-- Card 6 – Featured / CTA -->
+      <div class="service-card bg-gradient-to-br from-violet-600 to-indigo-700 rounded-3xl p-8 text-white">
+        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-3xl mb-6">🚀</div>
+        <h3 class="text-xl font-bold mb-2">Custom Solutions</h3>
+        <p class="text-violet-200 text-sm leading-relaxed mb-8">
+          Don't see exactly what you need? We love unique challenges. Let's build something tailor-made for your business.
+        </p>
+        <a href="/contact" class="inline-block bg-white text-violet-700 font-bold text-sm px-6 py-3 rounded-full hover:shadow-lg transition-all hover:-translate-y-0.5">
+          Let's Talk →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS STRIP ──────────────────────────────────── -->
+<section class="py-16 bg-gray-950">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div>
+        <p class="text-4xl font-black text-white mb-1">01</p>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest">Discovery</p>
+      </div>
+      <div>
+        <p class="text-4xl font-black text-white mb-1">02</p>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest">Design</p>
+      </div>
+      <div>
+        <p class="text-4xl font-black text-white mb-1">03</p>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest">Build</p>
+      </div>
+      <div>
+        <p class="text-4xl font-black text-white mb-1">04</p>
+        <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest">Launch</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+</body>
+</html>
