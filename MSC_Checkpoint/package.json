@@ -1,0 +1,9 @@
+{
+  "name": "distributed-kv-store",
+  "version": "1.0.0",
+  "description": "Distributed key-value store with consistent hashing and LRU cache",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
