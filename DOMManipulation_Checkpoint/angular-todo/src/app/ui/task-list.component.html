@@ -1,0 +1,11 @@
+@if (tasks.length === 0) {
+  <div class="rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+    No tasks yet — add one above.
+  </div>
+} @else {
+  <ul class="flex flex-col gap-2">
+    @for (task of tasks; track task.id) {
+      <app-task-item [task]="task" (update)="update.emit($event)" (remove)="remove.emit($event)" />
+    }
+  </ul>
+}
