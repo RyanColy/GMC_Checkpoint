@@ -1,0 +1,5 @@
+cvnode_modules/
+server/.env
+*.env.local
+dist/
+.DS_Store
